@@ -1,0 +1,40 @@
+﻿@using SemAspDotNet.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Курсовые работы</title>
+</head>
+<body>
+    <div>
+        @Html.ActionLink("Добавить новую курсовую работу", "Add")
+        <br/>
+        <table>
+            <tr>
+                <td>Название</td>
+                <td>Оценка</td>
+                <td>Курс</td>
+                <td>Автор</td>
+                <td>Руководитель</td>
+            </tr>
+            @foreach (CourseWork cw in (IEnumerable<CourseWork>)ViewData["CourseWorks"])
+            {
+                <tr>
+                    <td>@cw.Title</td>
+                    <td>@cw.Mark</td>
+                    <td>@cw.Course</td>
+                    <td>@cw.Student.Name</td>
+                    <td>@cw.Teacher.Name</td>
+                    <td>@Html.ActionLink("Открыть", "CourseWork", new { cw.Id })</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
